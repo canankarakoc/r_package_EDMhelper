@@ -117,11 +117,22 @@ plot_grid(pred.mean, comp.mean, ncol=1,
 #*****************************************
 #Analysis for the microcosms with predator
 #*****************************************
-predation_norm <- as.data.frame(apply(predation[,3:8], 2, function(x) (x - min(x))/(max(x)-min(x))))
-competition_norm <- as.data.frame(apply(competition[,c(3,4,6)], 2, function(x) (x - min(x))/(max(x)-min(x))))
+predation_norm <- as.data.frame(apply(predation[,3:8], 2, function(x) normalize_data(x, truezero = TRUE)$xnorm))
+competition_norm <- as.data.frame(apply(competition[,c(3,4,6)], 2, function(x) normalize_data(x, truezero = TRUE)$xnorm))
 
 predation   <- cbind(predation[,1:2], predation_norm)
 competition <- cbind(competition[,1:2], competition_norm)
+
+
+
+
+####### START HERE ###########
+
+
+
+
+
+
 
 #Separate time column from variables 
 #Split data by replicates
