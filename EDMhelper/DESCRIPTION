@@ -6,7 +6,11 @@ Authors@R: person("Adam Thomas", "Clark", email = "adam.tclark@gmail.com", role 
 Description: What the package does (one paragraph).
 Depends: R (>= 3.4)
 Imports:
+	ggplot2
+	plyr
 	rEDM (>= 0.7.4)
+	reshape
+	tidyr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
