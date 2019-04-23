@@ -10,6 +10,7 @@ Imports:
 	plyr
 	rEDM (>= 0.7.4)
 	reshape
+	Rmisc
 	tidyr
 License: GPL-3
 Encoding: UTF-8
