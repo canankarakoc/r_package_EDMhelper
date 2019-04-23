@@ -4,12 +4,14 @@
 \alias{find_max_E}
 \title{find_max_E}
 \usage{
-find_max_E(simplex_out, df)
+find_max_E(simplex_out, buffer = 0.99, predtype = "rho")
 }
 \arguments{
 \item{simplex_out}{output of a call from "simplex"}
 
-\item{df}{a data frame that includes columns "E" (embedding dimension) and "rho" (prediction skill)}
+\item{buffer}{A number from 0 to 1, indicating the allowed buffer distance between the "best" E, and the E that is used. If mulple E values fall within the buffer, then the smallest E is used. Defaults to 0.99, i.e. any value within 99\% of the "best" E can be chosen.}
+
+\item{predtype}{A character indicating which metric to be used for determining predictive skill. Defaults to "rho". Can be "rho", "mae", or "rmse".}
 }
 \value{
 Value of E corresponding to the best predictive skill.
