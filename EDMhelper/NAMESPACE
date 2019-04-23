@@ -3,4 +3,5 @@
 export(find_max_E)
 export(inormalize_data)
 export(normalize_data)
-import(rEDM)
+export(segment_data)
+import(stats)

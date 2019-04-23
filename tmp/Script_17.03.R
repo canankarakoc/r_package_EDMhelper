@@ -141,6 +141,9 @@ competition <- cbind(competition[,1:2], competition_norm)
 vars <- c("A","Am","K","Km","S","T")
 com_ts <- predation[,vars]
 data_by_rep <- split(com_ts, predation$replicate)
+
+
+
 segments_end <- cumsum(sapply(data_by_rep, NROW))
 segments_begin <- c(1, segments_end[-length(segments_end)]+1)
 segments <- cbind(segments_begin,segments_end)
