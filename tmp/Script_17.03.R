@@ -140,18 +140,14 @@ competition <- cbind(competition[,1:2], competition_norm)
 
 vars <- c("A","Am","K","Km","S","T")
 com_ts <- predation[,vars]
-data_by_rep <- split(com_ts, predation$replicate)
 
-
-
-segments_end <- cumsum(sapply(data_by_rep, NROW))
-segments_begin <- c(1, segments_end[-length(segments_end)]+1)
-segments <- cbind(segments_begin,segments_end)
+segments<-segment_data(predation$replicate)
+#data_by_rep <- split(com_ts, predation$replicate)
 
 #Predictability & nonlinearity
 #Find best E
 simplex_out <- lapply(vars, function(var){
-  simplex(predation[,c("day", var)], E=1:6, lib=segments, pred=segments, tau=1)
+  simplex(predation[,c("day", var)], E=1:6, lib=segments, pred=segments, tau=1, silent = TRUE)
 })
 
 names(simplex_out) <- vars
@@ -163,19 +159,15 @@ for(var in names(simplex_out)){
 }
 
 #Here I'd write a function max E finds minimum E which maximizes 10 percent. 
-#I am not sure if it is stupid, I rounded rhos 
-max_E <- sapply(simplex_out, function(df){
-  df$E[which.max(round(df$rho,1))]
-})
-max_E
+#I am not sure if it is stupid, I rounded rhos
 
-#Choose the smaller E if the difference in rho is not bigger than ~10%
-best_E <- as.integer(c(5,4,2,4,4,6))
-names(best_E) <- vars
+best_E <- unlist(lapply(simplex_out, function(x) find_max_E(x, buffer = 0.99, predtype = "rho")))
+
+
 
 ##Nonlinearity
 smap_out <- lapply(vars, function(var){
-  s_map(predation[,c("day", var)], E=best_E[var], lib= segments)
+  s_map(predation[,c("day", var)], E=best_E[var], lib= segments, silent = TRUE)
 })
 names(smap_out) <- names(simplex_out)
 
@@ -184,6 +176,9 @@ for(var in names(smap_out)){
   plot(smap_out[[var]]$theta, smap_out[[var]]$rho, type="l", 
        xlab="Nonlinearity (theta)", ylab="Forcast Skill (rho)", main=var)
 }
+
+best_theta<-unlist(lapply(smap_out, function(x) find_max_theta(x, buffer = 0.99, predtype = "rho")))
+
 
 #*********
 ###CCM###

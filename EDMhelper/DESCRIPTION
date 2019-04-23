@@ -1,10 +1,10 @@
 Package: EDMhelper
-Title: What the Package Does (one line, title case)
+Title: A helper package for rEDM
 Version: 1.0
 Authors@R:
 	c(person("Canan", "Karakoç", email = "canankarakoc@gmail.com", role = c("aut", "cre")),
 	person("Adam Thomas", "Clark", email = "adam.tclark@gmail.com", role = c("aut")))
-Description: What the package does (one paragraph).
+Description: Contains wrapper functions for the rEDM package. These functions automate various EDM routines, including CCM and extraction of s-mapping coefficients. See EDMhelper package documentation for examples.
 Depends: R (>= 3.4)
 Imports:
 	ggplot2,
