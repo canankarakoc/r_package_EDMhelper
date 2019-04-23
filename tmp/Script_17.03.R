@@ -7,11 +7,12 @@ library(reshape)
 library(ggplot2)
 #library(cowplot)
 library(plyr)
-#library(zoo)
+library(zoo)
 #library(dplyr)# cause problems with plyr
 library(tidyr)
 #library(geomnet)
 #library(vegan)
+library(Rmisc)
 
 
 mytheme<-theme_bw()+
@@ -30,8 +31,7 @@ mytheme<-theme_bw()+
 #There is autocorrelation in time. I took the first difference before ccm but then 
 #rho decreases dramatically.
 
-setwd("~/Everyfthing/a-CCM-Granger/EDM")
-source("Summary_statistics_functions.R")
+setwd("~/Dropbox/Projects/055_Karakoc_rpackage/tmp/")
 predation.data   <- read.table("p_combined.csv", header=T,sep=";",dec=",", stringsAsFactors=F)
 competition.data <- read.table("wp_combined.csv", header=T,sep=";",dec=",", stringsAsFactors=F)
 
