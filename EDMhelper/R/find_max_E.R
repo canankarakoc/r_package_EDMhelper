@@ -8,9 +8,6 @@
 #' @export
 #' @import rEDM
 
-#Here I'd write a function max E finds minimum E which maximizes 10 percent. 
-#I am not sure if it is stupid, I rounded rhos
-
 find_max_E<-function(simplex_out, df) {
   max_E <- sapply(simplex_out, function(df){
     df$E[which.max(round(df$rho,1))]
