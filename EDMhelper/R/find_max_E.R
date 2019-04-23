@@ -14,7 +14,7 @@ find_max_E<-function(simplex_out, buffer=0.99, predtype="rho") {
   if(predtype=="rho") {
     kpps<-which(simplex_out[,predtype]>=(max(simplex_out[,predtype])*buffer))
     best_E<-simplex_out$E[min(kpps)]
-  } else if(predtype%in%c("rmse", "rmse")) {
+  } else if(predtype%in%c("mae", "rmse")) {
     kpps<-which(simplex_out[,predtype]<=(min(simplex_out[,predtype])*((1-buffer)+1)))
     best_E<-simplex_out$E[min(kpps)]
   } else {
