@@ -11,16 +11,19 @@
 ccm_summary <- function (ccm_output, predtype="rho"){
 
   direction <- paste(ccm_output$target_column , "causes",  ccm_output$lib_column)
+  ccm_output$predtype<-ccm_output[,predtype]
 
-  summary   <-  with(ccm_output, aggregate(cbind(predtype=predtype),
+  summaryout   <-  with(ccm_output, aggregate(cbind(predtype=predtype),
                                        list(direction=direction,
                                             lib_size=lib_size),
                                        function(x) quantile(x, c(0.025,
                                                                  pnorm(-1,0,1), 0.5,
                                                                  pnorm(1,0,1), 0.975),
                                                             na.rm=T)))
+  summaryout<-data.frame(summaryout[,1:2], unlist(summaryout[,3]))
+  colnames(summaryout)[3:7]<-gsub("X", "Q", colnames(summaryout)[3:7], fixed=T)
 
-
+  return(summaryout)
 }
 
 
