@@ -1,7 +1,7 @@
-#' plot_smap
+#' plot_simplex
 #'
-#' Plot prediction skill vs. theta for the results of an s-map
-#' @param smap_out Output from s-map function (or a list of outputs)
+#' Plot prediction skill vs. theta for the results of the simplex function
+#' @param simplex_out Output from simplex function (or a list of outputs)
 #' @param predtype Type of prediction metric to use. Can be "rho", "rmse", or "mae".
 #' @param pname Optional name for the plot
 #' @keywords rEDM, s-map
@@ -9,28 +9,28 @@
 #' @import ggplot2
 #' @export
 
-plot_smap<-function(smap_out, predtype="rho", pname=NA) {
-
-  if(sum(grep("const_p_val", names(smap_out)))==0) {
-    dm<-dim(smap_out[[1]])
-    lng<-length(smap_out)
+plot_simplex<-function(simplex_out, predtype="rho", pname=NA) {
+  
+  if(sum(grep("const_p_val", names(simplex_out)))==0) {
+    dm<-dim(simplex_out[[1]])
+    lng<-length(simplex_out)
     if(!is.na(pname[1])) {
       nms<-pname
     } else {
-      nms<-names(smap_out)
+      nms<-names(simplex_out)
     }
-    smap_out<-do.call("rbind", smap_out)
-    rownames(smap_out)<-NULL
-    smap_out$variable<-rep(nms, each=dm[1])
-
+    simplex_out<-do.call("rbind", simplex_out)
+    rownames(simplex_out)<-NULL
+    simplex_out$variable<-rep(nms, each=dm[1])
+      
   } else {
-    smap_out$variable<-pname
+    simplex_out$variable<-pname
   }
-  variable<-smap_out$variable
-
-  theta<-smap_out$theta
-
-
+  variable<-simplex_out$variable
+  
+  E<-simplex_out$E
+  
+  
   nice_theme<-theme_bw()+
     theme(axis.text=element_text(size=12),
           axis.title=element_text(size=14,face="bold"),
@@ -41,14 +41,14 @@ plot_smap<-function(smap_out, predtype="rho", pname=NA) {
           plot.background = element_blank(),
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank())
-
-  predtype<-smap_out[,predtype]
-
-  plot_ccm <- ggplot(smap_out, aes(x=theta, y=predtype))+
+  
+  predtype<-simplex_out[,predtype]
+  
+  plot_ccm <- ggplot(simplex_out, aes(x=E, y=predtype))+
     geom_line(color="darkred")+
     facet_wrap(~variable)+
-    labs(y="Prediction skill", x="Nonlinearity, Theta")+
+    labs(y="Prediction skill", x="Embedding dimension, E")+
     nice_theme
-
+    
   return(plot_ccm)
 }
