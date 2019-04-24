@@ -24,6 +24,12 @@ ccm_delay_plot <- function (summaryout){
 
   summaryout_maxlibsize <-  summaryout[which(summaryout$lib_size==max(summaryout$lib_size)),]
 
+  tp         <- summaryout_maxlibsize$tp
+  Q50.       <- summaryout_maxlibsize$Q50.
+  Q15.86553. <- summaryout_maxlibsize$Q15.86553.
+  Q84.13447. <- summaryout_maxlibsize$Q84.13447.
+
+
   plot_ccm_delay <- ggplot(summaryout_maxlibsize, aes(x=tp, y=Q50.))+
     geom_hline(yintercept=0, linetype="dashed")+
     geom_ribbon(aes(ymin=Q15.86553., ymax=Q84.13447.),alpha=0.1)+

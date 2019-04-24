@@ -7,17 +7,17 @@
 plot_simplex(simplex_out, predtype = "rho", pname = NA)
 }
 \arguments{
-\item{simplex_out}{Output from simplex function (or a list of outputs)}
+\item{simplex_out}{Output from simplex function (or a list of outputs).}
 
 \item{predtype}{Type of prediction metric to use. Can be "rho", "rmse", or "mae".}
 
-\item{pname}{Optional name for the plot}
+\item{pname}{Optional name for the plot.}
 }
 \value{
-A ggplot object
+A ggplot object.
 }
 \description{
-Plot prediction skill vs. theta for the results of the simplex function
+Plot prediction skill vs. theta for the results of the simplex function.
 }
 \keyword{rEDM,}
-\keyword{s-map}
+\keyword{s-map.}

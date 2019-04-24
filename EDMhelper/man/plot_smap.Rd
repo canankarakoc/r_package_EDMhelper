@@ -7,17 +7,17 @@
 plot_smap(smap_out, predtype = "rho", pname = NA)
 }
 \arguments{
-\item{smap_out}{Output from s-map function (or a list of outputs)}
+\item{smap_out}{Output from s-map function (or a list of outputs).}
 
 \item{predtype}{Type of prediction metric to use. Can be "rho", "rmse", or "mae".}
 
-\item{pname}{Optional name for the plot}
+\item{pname}{Optional name for the plot.}
 }
 \value{
-A ggplot object
+A ggplot object.
 }
 \description{
-Plot prediction skill vs. theta for the results of an s-map
+Plot prediction skill vs. theta for the results of an s-map.
 }
 \keyword{rEDM,}
 \keyword{s-map}
