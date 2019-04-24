@@ -36,6 +36,7 @@ ccm_delay_plot <- function (summaryout){
     geom_line(color="darkred")+
     facet_grid(~direction)+
     labs(y="Prediction skill", x="tp")+
+    scale_x_continuous(breaks = tp)+
     nice_theme
 
   return(plot_ccm_delay)
