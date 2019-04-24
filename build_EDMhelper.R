@@ -1,3 +1,5 @@
+rm(list=ls())
+
 require(devtools)
 require(roxygen2)
 

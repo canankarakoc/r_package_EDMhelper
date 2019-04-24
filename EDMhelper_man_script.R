@@ -21,11 +21,30 @@ simplex_out <- lapply(dnames, function(dnames){
 best_E<-find_max_E(simplex_out, buffer=1, predtype = "rho")
 names(best_E)<-dnames
 
+#run CCM
 ccm_out<-ccm_easy(df=df, best_E=best_E, lib_segments=sgm, pred_segments=sgm)
 
+#summarize results
 summaryout<-ccm_summary(ccm_output = ccm_out, predtype = "rho")
 
+#run significance tests
 sigout<-significance_test(ccm_output = ccm_out, predtype = "rho")
 sigout
 
 ccm_easy_plot(summaryout)
+
+
+#run s-mapping
+smap_out <- lapply(dnames, function(dnames){
+  s_map(df[,c(dnames)], E=best_E[dnames], lib=sgm, pred=sgm, tau=1, silent = TRUE)
+})
+names(smap_out)<-dnames
+
+#find best theta for all time series
+best_theta<-find_max_theta(smap_out, buffer=1, predtype = "rho")
+names(best_theta)<-dnames
+
+plot_smap(smap_out)
+
+
+
