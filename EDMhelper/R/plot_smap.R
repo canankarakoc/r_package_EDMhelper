@@ -1,11 +1,11 @@
 #' plot_smap
 #'
-#' Plot prediction skill vs. theta for the results of an s-map
-#' @param smap_out Output from s-map function (or a list of outputs)
+#' Plot prediction skill vs. theta for the results of an s-map.
+#' @param smap_out Output from s-map function (or a list of outputs).
 #' @param predtype Type of prediction metric to use. Can be "rho", "rmse", or "mae".
-#' @param pname Optional name for the plot
+#' @param pname Optional name for the plot.
 #' @keywords rEDM, s-map
-#' @return A ggplot object
+#' @return A ggplot object.
 #' @import ggplot2
 #' @export
 
@@ -31,13 +31,13 @@ plot_smap<-function(smap_out, predtype="rho", pname=NA) {
   theta<-smap_out$theta
 
 
-  nice_theme<-theme_bw()+
-    theme(axis.text=element_text(size=12),
-          axis.title=element_text(size=14,face="bold"),
+  nice_theme <-theme_bw()+
+    theme(axis.text= element_text(size=12),
+          axis.title = element_text(size=14,face="bold"),
           legend.text = element_text(size=12),
-          legend.title= element_text(size=12,face="bold"),
+          legend.title = element_text(size=12,face="bold"),
           plot.title = element_text(size=14, face="bold"),
-          strip.text =element_text(size=12),
+          strip.text = element_text(size=14, face="bold"),
           plot.background = element_blank(),
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank())

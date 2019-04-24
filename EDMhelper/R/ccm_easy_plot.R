@@ -14,12 +14,12 @@ ccm_easy_plot <- function (summaryout){
   lib_size<-summaryout$lib_size
 
   nice_theme<-theme_bw()+
-    theme(axis.text=element_text(size=12),
-          axis.title=element_text(size=14,face="bold"),
+    theme(axis.text= element_text(size=12),
+          axis.title = element_text(size=14,face="bold"),
           legend.text = element_text(size=12),
-          legend.title= element_text(size=12,face="bold"),
+          legend.title = element_text(size=12,face="bold"),
           plot.title = element_text(size=14, face="bold"),
-          strip.text =element_text(size=12),
+          strip.text = element_text(size=14, face="bold"),
           plot.background = element_blank(),
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank())
