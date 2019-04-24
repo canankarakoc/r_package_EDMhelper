@@ -38,7 +38,7 @@ sigout
 ccm_easy_plot(summaryout)
 
 #run time-delay CCM
-ccm_del_out<-ccm_delay_easy(df=df, best_E = best_E, lib_segments=sgm, pred_segments=sgm, tp = -2:2)
+ccm_del_out<-ccm_delay_easy(df=df, best_E = best_E, lib_segments=sgm, pred_segments=sgm, tp = -5:5)
 
 #summarize results
 summaryout_del<-ccm_summary(ccm_output = ccm_del_out, predtype = "rho")
@@ -50,8 +50,8 @@ sigout_del
 #plot result
 ccm_easy_plot(summaryout_del)
 
-
-
+#plot prediction skill at the maximum library size as a function of tp
+ccm_delay_plot(summaryout_del)
 
 #run s-mapping
 smap_out <- lapply(dnames, function(dnames){
