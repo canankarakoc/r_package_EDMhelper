@@ -34,6 +34,9 @@ maxE_test<-round(sqrt(min(sgm[,2]-sgm[,1]))) #maximum E to test is sqrt(time ser
 simplex_out <- lapply(dnames, function(dnames){
   simplex(df[,c(dnames)], E=2:maxE_test, lib=sgm, pred=sgm, tau=1, silent = TRUE)
 })
+names(simplex_out)<-dnames
+
+plot_simplex(simplex_out)
 
 #find best E for all time series
 best_E<-find_max_E(simplex_out, buffer=1, predtype = "rho")
