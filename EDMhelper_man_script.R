@@ -31,7 +31,23 @@ summaryout<-ccm_summary(ccm_output = ccm_out, predtype = "rho")
 sigout<-significance_test(ccm_output = ccm_out, predtype = "rho")
 sigout
 
+#plot result
 ccm_easy_plot(summaryout)
+
+#run time-delay CCM
+ccm_del_out<-ccm_delay_easy(df=df, best_E = best_E, lib_segments=sgm, pred_segments=sgm, tp = -2:2)
+
+#summarize results
+summaryout_del<-ccm_summary(ccm_output = ccm_del_out, predtype = "rho")
+
+#run significance tests
+sigout_del<-significance_test(ccm_output = ccm_del_out, predtype = "rho")
+sigout_del
+
+#plot result
+ccm_easy_plot(summaryout_del)
+
+
 
 
 #run s-mapping

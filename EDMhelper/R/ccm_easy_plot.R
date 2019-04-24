@@ -32,7 +32,7 @@ ccm_easy_plot <- function (summaryout){
     geom_hline(yintercept=0, linetype="dashed")+
     geom_ribbon(aes(ymin=Q15.86553., ymax=Q84.13447., x=lib_size),alpha=0.1)+
     geom_line(color="darkred")+
-    facet_wrap(~direction)+
+    facet_grid(tp~direction)+
     labs(y="Prediction skill", x="Library size")+
     nice_theme
 
