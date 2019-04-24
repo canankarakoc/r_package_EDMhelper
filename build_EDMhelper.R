@@ -7,6 +7,7 @@ require(roxygen2)
 
 setwd("C:/Users/karakoc/Documents/Everyfthing/r_package_EDMhelper/r_package_EDMhelper/EDMhelper/")
 document()
+
 check()
 
 build()

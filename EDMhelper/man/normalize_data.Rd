@@ -7,7 +7,7 @@
 normalize_data(x, truezero = FALSE)
 }
 \arguments{
-\item{x}{a numeric vector to be normalized}
+\item{x}{a numeric vector to be normalized, or a matrix where each column is a time series}
 
 \item{truezero}{A logical telling whether the data includes true zeros - if TRUE then standardizes based only on the standard deviaiton of x, else if FALSE standardizes x based on its mean and standard deviation. Defaults to FALSE.}
 }

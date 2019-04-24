@@ -11,14 +11,18 @@
 
 find_max_E<-function(simplex_out, buffer=0.99, predtype="rho") {
 
-  if(predtype=="rho") {
-    kpps<-which(simplex_out[,predtype]>=(max(simplex_out[,predtype])*buffer))
-    best_E<-simplex_out$E[min(kpps)]
-  } else if(predtype%in%c("mae", "rmse")) {
-    kpps<-which(simplex_out[,predtype]<=(min(simplex_out[,predtype])*((1-buffer)+1)))
-    best_E<-simplex_out$E[min(kpps)]
+  if(sum(grep("const_p_val", names(simplex_out)))==0) {
+    best_E<-unlist(lapply(simplex_out, function(x) find_max_E(x, buffer=buffer, predtype=predtype)))
   } else {
-    return("error: predtype must be 'rho', 'mae', or 'rmse'")
+    if(predtype=="rho") {
+      kpps<-which(simplex_out[,predtype]>=(max(simplex_out[,predtype])*buffer))
+      best_E<-simplex_out$E[min(kpps)]
+    } else if(predtype%in%c("mae", "rmse")) {
+      kpps<-which(simplex_out[,predtype]<=(min(simplex_out[,predtype])*((1-buffer)+1)))
+      best_E<-simplex_out$E[min(kpps)]
+    } else {
+      return("error: predtype must be 'rho', 'mae', or 'rmse'")
+    }
   }
 
   return(best_E)

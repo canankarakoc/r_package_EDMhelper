@@ -11,14 +11,18 @@
 
 find_max_theta<-function(smap_out, buffer=0.99, predtype="rho") {
 
-  if(predtype=="rho") {
-    kpps<-which(smap_out[,predtype]>=(max(smap_out[,predtype])*buffer))
-    best_theta<-smap_out$theta[min(kpps)]
-  } else if(predtype%in%c("mae", "rmse")) {
-    kpps<-which(smap_out[,predtype]<=(min(smap_out[,predtype])*((1-buffer)+1)))
-    best_theta<-smap_out$theta[min(kpps)]
+  if(sum(grep("const_p_val", names(smap_out)))==0) {
+    best_theta<-lapply(smap_out, function(x) find_max_theta(x, buffer=buffer, predtype=predtype))
   } else {
-    return("error: predtype must be 'rho', 'mae', or 'rmse'")
+    if(predtype=="rho") {
+      kpps<-which(smap_out[,predtype]>=(max(smap_out[,predtype])*buffer))
+      best_theta<-smap_out$theta[min(kpps)]
+    } else if(predtype%in%c("mae", "rmse")) {
+      kpps<-which(smap_out[,predtype]<=(min(smap_out[,predtype])*((1-buffer)+1)))
+      best_theta<-smap_out$theta[min(kpps)]
+    } else {
+      return("error: predtype must be 'rho', 'mae', or 'rmse'")
+    }
   }
 
   return(best_theta)

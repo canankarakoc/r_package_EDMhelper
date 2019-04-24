@@ -1,22 +1,32 @@
 #' significance_test
 #'
 #' Significance test for convergent cross mapping
-#' @param ccm_summary output of a call from "ccm_summary"
+#' @param ccm_output output of a call from "ccm_easy"
 #' @param predtype A character indicating which metric to be used for determining predictive skill. Defaults to "rho". Can be "rho", "mae", or "rmse".
 #' @keywords rEDM, significance
-#' @return
-#' @import
+#' @return Results from significance test.
 #' @export
 
-significance_test <- function (ccm_summary, predtype="rho") {
+significance_test <- function (ccm_output, predtype="rho") {
 
-  significance_data <- as.data.frame(ccm_summary$direction)
+  ccm_output$direction<-paste(ccm_output$target_column , "causes",  ccm_output$lib_column)
 
+  significance_data <- ccm_output$direction
+  significance_data_lst<-sort(unique(significance_data))
+  pval<-data.frame(direction=significance_data_lst, pval=NA)
 
-  significance_data$significance <- ifelse(ccm_summary[ccm_summary$lib_size==max(ccm_summary$lib_size),]$rho[,1]>0 &
-                      (ccm_summary[ccm_summary$lib_size==max(ccm_summary$lib_size),]$predtype[,1]-
-                         ccm_summary[ccm_summary$lib_size==min(ccm_summary$lib_size),]$predtype[,1])>0, "1","0")
+  for(i in 1:length(significance_data_lst)) {
+    sbs<-which(significance_data==significance_data_lst[i])
+    mx<-ccm_output[sbs,][ccm_output$lib_size[sbs]==max(ccm_output$lib_size[sbs]),predtype]
+    mn<-ccm_output[sbs,][ccm_output$lib_size[sbs]==min(ccm_output$lib_size[sbs]),predtype]
 
-return(significance_data)
+    if(predtype=="rho") {
+      pval[i,2]<-mean(mx<0 | (mx<=mn))
+    } else {
+      pval[i,2]<-mean(mx>=mn)
+    }
+  }
+
+  return(pval)
 }
 
