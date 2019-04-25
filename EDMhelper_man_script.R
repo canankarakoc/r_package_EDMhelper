@@ -72,3 +72,13 @@ plot_smap(smap_out)
 smap_coef_out<-get_smap_coef(df=df, lib_segments = sgm, sigout = sigout_tp, best_E = best_E, best_theta = best_theta)
 
 
+#plot coefficients
+ccm_easy_plot(index_sp=1, smap_coef_out=smap_coef_out, covar=df[,"paramecium"], ycol="all", xlab="paramecium")
+ccm_easy_plot(index_sp=1, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
+
+ccm_easy_plot(index_sp=2, smap_coef_out=smap_coef_out, covar=df[,"didinium"], ycol="all", xlab="didinium")
+ccm_easy_plot(index_sp=2, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
+
+ccm_easy_plot(index_sp=3, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
+ccm_easy_plot(index_sp=4, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
+
