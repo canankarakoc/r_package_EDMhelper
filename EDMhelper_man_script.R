@@ -91,5 +91,5 @@ smap_coef_out_FULL<-get_smap_coef(df=df, lib_segments = sgm,
                sigout = sigout, best_E = best_E, best_theta = best_theta, selfref = TRUE)
 
 
-
-
+stability_out = stability_analysis(smap_coef_out_FULL)
+stability_out$plot_indices
