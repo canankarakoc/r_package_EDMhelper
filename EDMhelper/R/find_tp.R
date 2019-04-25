@@ -5,7 +5,7 @@
 #' @param cutoff cuttoff for p-value. Default is 0.05.
 #' @keywords rEDM, prediction lag
 #' @return Data frame with the tps corresponding to the best predictive skill.
-
+#' @export
 
 find_tp<-function(sgn, cutoff=0.05) {
 

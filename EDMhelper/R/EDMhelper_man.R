@@ -43,7 +43,6 @@
 #'
 #' #run significance tests
 #' sigout<-significance_test(ccm_output = ccm_out, predtype = "rho")
-#' sigout
 #'
 #' #plot result
 #' ccm_easy_plot(summaryout)
@@ -51,14 +50,14 @@
 #' #run time-delay CCM
 #' #smaller number of samples to reduce runtime
 #' num_samples<-20
-#' ccm_del_out<-ccm_delay_easy(df=df, best_E = best_E, lib_segments=sgm, pred_segments=sgm, tp = -5:5, num_samples=num_samples)
+#' ccm_del_out<-ccm_delay_easy(df=df, best_E = best_E, lib_segments=sgm,
+#'   pred_segments=sgm, tp = -5:5, num_samples=num_samples)
 #'
 #' #summarize results
 #' summaryout_del<-ccm_summary(ccm_output = ccm_del_out, predtype = "rho")
 #'
 #' #run significance tests
 #' sigout_del<-significance_test(ccm_output = ccm_del_out, predtype = "rho")
-#' sigout_del
 #'
 #' sigout_tp<-find_tp(sigout_del, cutoff = 0.05)
 #'
@@ -82,21 +81,24 @@
 #'
 #'
 #' #calculate s-map coefficients
-#' smap_coef_out<-get_smap_coef(df=df, lib_segments = sgm, sigout = sigout_tp, best_E = best_E, best_theta = best_theta)
+#' smap_coef_out<-get_smap_coef(df=df, lib_segments = sgm,
+#'   sigout = sigout_tp, best_E = best_E, best_theta = best_theta)
 #'
 #'
 #' #plot coefficients
-#' smap_coef_plot(index_sp=1, smap_coef_out=smap_coef_out, covar=df[,"paramecium"], ycol="all", xlab="paramecium")
-#' smap_coef_plot(index_sp=1, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
+#' smap_coef_plot(index_sp=1, smap_coef_out=smap_coef_out,
+#'   covar=df[,"paramecium"], ycol="all", xlab="paramecium")
+#' smap_coef_plot(index_sp=1, smap_coef_out=smap_coef_out,
+#'   covar="time", ycol="all", xlab="time")
 #'
-#' smap_coef_plot(index_sp=2, smap_coef_out=smap_coef_out, covar=df[,"didinium"], ycol="all", xlab="didinium")
-#' smap_coef_plot(index_sp=2, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
-#'
-#' smap_coef_plot(index_sp=3, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
-#' smap_coef_plot(index_sp=4, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
+#' smap_coef_plot(index_sp=2, smap_coef_out=smap_coef_out,
+#'   covar=df[,"didinium"], ycol="all", xlab="didinium")
+#' smap_coef_plot(index_sp=2, smap_coef_out=smap_coef_out,
+#'   covar="time", ycol="all", xlab="time")
 #'
 #'
 #' #stability analysis
-#' smap_coef_out_FULL<-get_smap_coef(df=df, lib_segments = sgm, sigout = sigout, best_E = best_E, best_theta = best_theta, selfref = TRUE)
+#' smap_coef_out_FULL<-get_smap_coef(df=df, lib_segments = sgm,
+#'   sigout = sigout, best_E = best_E, best_theta = best_theta, selfref = TRUE)
 
 NULL

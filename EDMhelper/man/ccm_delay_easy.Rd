@@ -5,7 +5,7 @@
 \title{ccm_delay_easy}
 \usage{
 ccm_delay_easy(df, best_E, lib_segments, pred_segments = lib_segments,
-  tp = -10:10, ...)
+  tp = -3:3, ...)
 }
 \arguments{
 \item{df}{A data.frame where each column is a time series. Note that additional columns such as time and replicates should not be included in this data.frame.}
