@@ -6,11 +6,12 @@
 #' @param sigout results of ccm significance test, from significance_test() or ccm_summary() functions
 #' @param best_E vector of best E values from find_max_E()
 #' @param best_theta vector of best theta values from find_max_theta()
+#' @param ... Additional arguments to be passed to block_lnlp - e.g. if different pred segments are desired
 #' @keywords rEDM, s-mapping
 #' @return List including the direction of tets, list of s-mapping results, and list of blocks of data corresponding to the tests.
 #' @export
 
-get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta) {
+get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta, ...) {
   direction<-t(matrix(nrow=2, data=unlist(strsplit(as.character(sigout$direction), " causes ", fixed=T))))
   colnames(direction)<-c("target", "lib")
   
@@ -53,9 +54,9 @@ get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta) {
                        paste(lib, paste("_t", 1:(ncol(block)-2), sep=""), sep=""))
     
     
-    smap_out_tmp<-block_lnlp(block=block, lib = lib_segments, pred = lib_segments, method = "s-map",
+    smap_out_tmp<-block_lnlp(block=block, lib = lib_segments, method = "s-map",
                tp = 1, target_column = 1, theta = unlist(best_theta[which(names(best_theta)==lib)]), first_column_time = TRUE, columns = (1:(ncol(block)-1))[-1],
-               stats_only = FALSE, silent = TRUE, save_smap_coefficients = TRUE)
+               stats_only = FALSE, silent = TRUE, save_smap_coefficients = TRUE, ...)
     
     smap_out[[i]]<-smap_out_tmp
     block_out[[i]]<-block

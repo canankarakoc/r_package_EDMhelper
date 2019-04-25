@@ -4,7 +4,7 @@
 \alias{get_smap_coef}
 \title{get_smap_coef}
 \usage{
-get_smap_coef(df, lib_segments, sigout, best_E, best_theta)
+get_smap_coef(df, lib_segments, sigout, best_E, best_theta, ...)
 }
 \arguments{
 \item{df}{A data.frame where each column is a time series. Note that additional columns such as time and replicates should not be included in this data.frame.}
@@ -16,6 +16,8 @@ get_smap_coef(df, lib_segments, sigout, best_E, best_theta)
 \item{best_E}{vector of best E values from find_max_E()}
 
 \item{best_theta}{vector of best theta values from find_max_theta()}
+
+\item{...}{Additional arguments to be passed to block_lnlp - e.g. if different pred segments are desired}
 }
 \value{
 List including the direction of tets, list of s-mapping results, and list of blocks of data corresponding to the tests.
