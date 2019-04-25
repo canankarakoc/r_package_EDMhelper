@@ -3,6 +3,9 @@
 \name{stability_analysis}
 \alias{stability_analysis}
 \title{stability_analysis}
+\source{
+Usho, M., et al. (2018). Fluctuating interaction network and time-varying stability of a natural fish community. Nature 554:360–363.
+}
 \usage{
 stability_analysis(smap_coef_out, doplot = TRUE)
 }
@@ -15,7 +18,7 @@ stability_analysis(smap_coef_out, doplot = TRUE)
 List including indices, and plots if requested.
 }
 \description{
-Calculate local stability and interaction indices.
+Calculate local stability and interaction indices. Follows methods of Ushio et al. 2018.
 }
 \keyword{rEDM,}
 \keyword{s-mapping}
