@@ -53,12 +53,20 @@ get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta, selfref=FA
     }
     
     #rename block columns
-    colnames(block)<-c("time", paste(target, "_t", abs(tpuse[i]), sep=""),
-                       paste(lib, paste("_t", 1:(ncol(block)-2), sep=""), sep=""))
+    if(ncol(block)>3) {
+      colnames(block)<-c("time",
+                       paste(lib, paste("_t", 1, sep=""), sep=""),
+                       paste(target, "_t", abs(tpuse[i]), sep=""),
+                       paste(lib, paste("_t", (1:(ncol(block)-2))[-1], sep=""), sep=""))
+    } else {
+      colnames(block)<-c("time",
+                         paste(lib, paste("_t", 1, sep=""), sep=""),
+                         paste(target, "_t", abs(tpuse[i]), sep=""))
+    }
     
     
     smap_out_tmp<-block_lnlp(block=block, lib = lib_segments, method = "s-map",
-               tp = 1, target_column = 1, theta = unlist(best_theta[which(names(best_theta)==lib)]), first_column_time = TRUE, columns = (1:(ncol(block)-1))[-1],
+               tp = 0, target_column = 1, theta = unlist(best_theta[which(names(best_theta)==lib)]), first_column_time = TRUE, columns = (1:(ncol(block)-1))[-1],
                stats_only = FALSE, silent = TRUE, save_smap_coefficients = TRUE, ...)
     
     smap_out[[i]]<-smap_out_tmp

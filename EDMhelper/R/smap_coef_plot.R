@@ -17,9 +17,6 @@
 smap_coef_plot <- function (index_sp, smap_coef_out, covar="time", ycol="all", xlab=""){
 
 
-  colnames(smap_coef_out$smap_out[[index_sp]]$smap_coefficients[[1]])<-c(colnames(smap_coef_out$block_out[[index_sp]])[-c(1:2)], "intercept")
-
-
  if(ycol=="all") {
    yvar<-smap_coef_out$smap_out[[index_sp]]$smap_coefficients[[1]]
  } else {
