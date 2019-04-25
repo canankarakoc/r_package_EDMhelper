@@ -47,6 +47,8 @@ summaryout_del<-ccm_summary(ccm_output = ccm_del_out, predtype = "rho")
 sigout_del<-significance_test(ccm_output = ccm_del_out, predtype = "rho")
 sigout_del
 
+sigout_tp<-find_tp(sigout_del, cutoff = 0.05)
+
 #plot result
 ccm_easy_plot(summaryout_del)
 
