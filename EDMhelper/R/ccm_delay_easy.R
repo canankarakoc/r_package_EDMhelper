@@ -12,7 +12,7 @@
 #' @import rEDM
 #' @export
 
-ccm_delay_easy <- function (df, best_E, lib_segments, pred_segments=lib_segments, tp=-10:10, ...){
+ccm_delay_easy <- function (df, best_E, lib_segments, pred_segments=lib_segments, tp=-3:3, ...){
 
   vars            <- expand.grid(lib_column = colnames(df), target_column=colnames(df), tp=tp)
   vars$best_E     <- unname(best_E[match(vars[,"lib_column"],names(best_E))])

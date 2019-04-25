@@ -6,12 +6,13 @@
 #' @param sigout results of ccm significance test, from significance_test() or ccm_summary() functions
 #' @param best_E vector of best E values from find_max_E()
 #' @param best_theta vector of best theta values from find_max_theta()
+#' @param selfref Include separate analysis of self-limitation? Defaults to FALSE.
 #' @param ... Additional arguments to be passed to block_lnlp - e.g. if different pred segments are desired
 #' @keywords rEDM, s-mapping
 #' @return List including the direction of tets, list of s-mapping results, and list of blocks of data corresponding to the tests.
 #' @export
 
-get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta, ...) {
+get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta, selfref=FALSE, ...) {
   direction<-t(matrix(nrow=2, data=unlist(strsplit(as.character(sigout$direction), " causes ", fixed=T))))
   colnames(direction)<-c("target", "lib")
   
@@ -21,8 +22,10 @@ get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta, ...) {
   
   #add self-limitation
   splst<-sort(unique(c(direction)))
-  direction<-rbind(direction, t(matrix(nrow=2, data=rep(splst, each=2))))
-  tpuse<-c(tpuse, rep(0, length(splst)))
+  if(selfref) {
+    direction<-rbind(direction, t(matrix(nrow=2, data=rep(splst, each=2))))
+    tpuse<-c(tpuse, rep(0, length(splst)))
+  }
   
   smap_out<-list()
   block_out<-list()

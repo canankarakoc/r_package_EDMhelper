@@ -73,12 +73,12 @@ smap_coef_out<-get_smap_coef(df=df, lib_segments = sgm, sigout = sigout_tp, best
 
 
 #plot coefficients
-ccm_easy_plot(index_sp=1, smap_coef_out=smap_coef_out, covar=df[,"paramecium"], ycol="all", xlab="paramecium")
-ccm_easy_plot(index_sp=1, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
+smap_coef_plot(index_sp=1, smap_coef_out=smap_coef_out, covar=df[,"paramecium"], ycol="all", xlab="paramecium")
+smap_coef_plot(index_sp=1, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
 
-ccm_easy_plot(index_sp=2, smap_coef_out=smap_coef_out, covar=df[,"didinium"], ycol="all", xlab="didinium")
-ccm_easy_plot(index_sp=2, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
+smap_coef_plot(index_sp=2, smap_coef_out=smap_coef_out, covar=df[,"didinium"], ycol="all", xlab="didinium")
+smap_coef_plot(index_sp=2, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
 
-ccm_easy_plot(index_sp=3, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
-ccm_easy_plot(index_sp=4, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
+smap_coef_plot(index_sp=3, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
+smap_coef_plot(index_sp=4, smap_coef_out=smap_coef_out, covar="time", ycol="all", xlab="time")
 
