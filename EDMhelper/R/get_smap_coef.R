@@ -63,6 +63,8 @@ get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta, selfref=FA
     
     smap_out[[i]]<-smap_out_tmp
     block_out[[i]]<-block
+    
+    colnames(smap_out[[i]]$smap_coefficients[[1]])<-c(colnames(block_out[[i]])[-c(1:2)], "intercept")
   }
   
   return(list(direction=direction, smap_out=smap_out, block_out=block_out))
