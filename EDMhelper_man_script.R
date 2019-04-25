@@ -68,4 +68,7 @@ names(best_theta)<-dnames
 plot_smap(smap_out)
 
 
+#calculate s-map coefficients
+smap_coef_out<-get_smap_coef(df=df, lib_segments = sgm, sigout = sigout_tp, best_E = best_E, best_theta = best_theta)
+
 

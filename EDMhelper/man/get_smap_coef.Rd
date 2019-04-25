@@ -18,7 +18,7 @@ get_smap_coef(df, lib_segments, sigout, best_E, best_theta)
 \item{best_theta}{vector of best theta values from find_max_theta()}
 }
 \value{
-List including the s-mapping results and the blocks of data corresponding to the tests.
+List including the direction of tets, list of s-mapping results, and list of blocks of data corresponding to the tests.
 }
 \description{
 Calculate s-mapping coefficients based on results from ccm-test

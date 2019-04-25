@@ -7,7 +7,7 @@
 #' @param best_E vector of best E values from find_max_E()
 #' @param best_theta vector of best theta values from find_max_theta()
 #' @keywords rEDM, s-mapping
-#' @return List including the s-mapping results and the blocks of data corresponding to the tests.
+#' @return List including the direction of tets, list of s-mapping results, and list of blocks of data corresponding to the tests.
 #' @export
 
 get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta) {
@@ -61,5 +61,5 @@ get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta) {
     block_out[[i]]<-block
   }
   
-  return(list(smap_out=smap_out, block_out=block_out))
+  return(list(direction=direction, smap_out=smap_out, block_out=block_out))
 }
