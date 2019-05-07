@@ -73,7 +73,7 @@ smap_coef_plot <- function (index_sp, smap_coef_out, covar="time", ycol="all", x
     geom_line(aes(color=variable))+
     #facet_grid(~index_sp)+
     labs(y="S-map coefficients", x=xlab)+
-    ggtitle(paste("target: ", smap_coef_out$direction[index_sp,]["target"], sep=""))+
+    ggtitle(paste("lib: ", smap_coef_out$direction[index_sp,]["lib"], sep=""))+
     nice_theme
 
   return(plot_smap_coef)
