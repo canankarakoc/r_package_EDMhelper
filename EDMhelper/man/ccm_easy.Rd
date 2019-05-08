@@ -4,7 +4,8 @@
 \alias{ccm_easy}
 \title{ccm_easy}
 \usage{
-ccm_easy(df, best_E, lib_segments, pred_segments = lib_segments, ...)
+ccm_easy(df, best_E, lib_segments, pred_segments = lib_segments,
+  vars_matrix_ord = NULL, ...)
 }
 \arguments{
 \item{df}{A data.frame where each column is a time series. Note that additional columns such as time and replicates should not be included in this data.frame.}
@@ -14,6 +15,8 @@ ccm_easy(df, best_E, lib_segments, pred_segments = lib_segments, ...)
 \item{lib_segments}{Segments which are used for predictions.}
 
 \item{pred_segments}{Segments which are used for predictions}
+
+\item{vars_matrix_ord}{An optional pre-made data.frame of combinations of variables to test. Must include columns 'lib_column', 'target_column', and 'best_E'.}
 
 \item{...}{Additional arguments to be passed to ccm}
 }

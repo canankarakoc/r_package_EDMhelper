@@ -5,7 +5,7 @@
 \title{ccm_delay_easy}
 \usage{
 ccm_delay_easy(df, best_E, lib_segments, pred_segments = lib_segments,
-  tp = -3:3, ...)
+  tp = -3:3, vars_matrix_ord = NULL, ...)
 }
 \arguments{
 \item{df}{A data.frame where each column is a time series. Note that additional columns such as time and replicates should not be included in this data.frame.}
@@ -17,6 +17,8 @@ ccm_delay_easy(df, best_E, lib_segments, pred_segments = lib_segments,
 \item{pred_segments}{Segments which are used for predictions.}
 
 \item{tp}{Range of prediction lag should be tested. Default is -10 to 10.}
+
+\item{vars_matrix_ord}{An optional pre-made data.frame of combinations of variables to test. Must include columns 'lib_column', 'target_column', and 'best_E'.}
 
 \item{...}{Additional arguments to be passed to ccm.}
 }
