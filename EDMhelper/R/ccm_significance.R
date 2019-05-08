@@ -26,11 +26,11 @@ significance_test <- function (ccm_output, predtype="rho") {
       mn<-ccm_output[sbs,][ccm_output$lib_size[sbs]==min(ccm_output$lib_size[sbs]),predtype]
 
       if(predtype=="rho") {
-        pval[n,3]<-mean(mx<0 | (mx<=mn))
+        pval[n,3]<-mean(mx<0 | (mx<=mn), na.rm=T)
       } else {
-        pval[n,3]<-mean(mx>=mn)
+        pval[n,3]<-mean(mx>=mn, na.rm=T)
       }
-      pval[n,4]<-mean(mx)
+      pval[n,4]<-mean(mx, na.rm=T)
       n<-n+1
     }
   }
