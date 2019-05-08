@@ -26,15 +26,14 @@ ccm_delay_easy <- function (df, best_E, lib_segments, pred_segments=lib_segments
   }
 
   ccm_delay_output <- do.call(rbind, lapply(seq_len(NROW(vars_matrix_ord)), function(i){
-    ccmout_tmp<-rbind(ccmout_tmp, ccm(df,
+    ccm(df,
           lib = lib_segments,
           pred = pred_segments,
           E=vars_matrix_ord$best_E[i],
           lib_column = as.character(vars_matrix_ord$lib_column[i]),
           target_column = as.character(vars_matrix_ord$target_column[i]),
           tp=vars_matrix_ord$tp[i],
-          silent=TRUE,...))
-    ccmout_tmp
+          silent=TRUE,...)
   }))
 
   return(ccm_delay_output)
