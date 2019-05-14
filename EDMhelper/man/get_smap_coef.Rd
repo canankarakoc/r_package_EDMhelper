@@ -5,7 +5,7 @@
 \title{get_smap_coef}
 \usage{
 get_smap_coef(df, lib_segments, sigout, best_E, best_theta,
-  selfref = FALSE, ...)
+  selfref = FALSE, target_loc = "first", ...)
 }
 \arguments{
 \item{df}{A data.frame where each column is a time series. Note that additional columns such as time and replicates should not be included in this data.frame.}
@@ -19,6 +19,8 @@ get_smap_coef(df, lib_segments, sigout, best_E, best_theta,
 \item{best_theta}{vector of best theta values from find_max_theta()}
 
 \item{selfref}{Include separate analysis of self-limitation? Defaults to FALSE.}
+
+\item{target_loc}{A character, specifying whether the target column should be placed first or last in the block - influences result of type-I regressions in S-mapping. Options are "first" or "last".}
 
 \item{...}{Additional arguments to be passed to block_lnlp - e.g. if different pred segments are desired}
 }

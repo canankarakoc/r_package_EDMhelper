@@ -7,12 +7,13 @@
 #' @param best_E vector of best E values from find_max_E()
 #' @param best_theta vector of best theta values from find_max_theta()
 #' @param selfref Include separate analysis of self-limitation? Defaults to FALSE.
+#' @param target_loc A character, specifying whether the target column should be placed first or last in the block - influences result of type-I regressions in S-mapping. Options are "first" or "last".
 #' @param ... Additional arguments to be passed to block_lnlp - e.g. if different pred segments are desired
 #' @keywords rEDM, s-mapping
 #' @return List including the direction of tets, list of s-mapping results, and list of blocks of data corresponding to the tests.
 #' @export
 
-get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta, selfref=FALSE, ...) {
+get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta, selfref=FALSE, target_loc = "first", ...) {
   direction<-t(matrix(nrow=2, data=unlist(strsplit(as.character(sigout$direction), " causes ", fixed=T))))
   colnames(direction)<-c("target", "lib")
 
@@ -44,20 +45,31 @@ get_smap_coef<-function(df, lib_segments, sigout, best_E, best_theta, selfref=FA
     if(target==lib) {
       block_target<-NULL
     } else {
-      block_target<-make_block(df[,target], lib = lib_segments, max_lag = pmax(1, -tpuse[i]),restrict_to_lib = TRUE)
+      block_target<-make_block(df[,target], lib = lib_segments, max_lag = ifelse(tpuse[i]>0, 1, abs(tpuse[i])+1), restrict_to_lib = TRUE)
       block_target<-block_target[,ncol(block_target)]
     }
 
     if(!is.null(block_target)) {
-      block<-cbind(block[,1:2], block_target, block[,-c(1:2)])
+      if(target_loc=="first") {
+        block<-cbind(block[,1:2], block_target, block[,-c(1:2)])
+      } else {
+        block<-cbind(block, block_target)
+      }
     }
 
     #rename block columns
     if(ncol(block)>3) {
-      colnames(block)<-c("time",
+      if(target_loc=="first") {
+        colnames(block)<-c("time",
                        paste(lib, paste("_t", 1, sep=""), sep=""),
                        paste(target, "_t", abs(tpuse[i]), sep=""),
                        paste(lib, paste("_t", (1:(ncol(block)-2))[-1], sep=""), sep=""))
+      } else {
+        colnames(block)<-c("time",
+                           paste(lib, paste("_t", 1, sep=""), sep=""),
+                           paste(lib, paste("_t", (1:(ncol(block)-2))[-1], sep=""), sep=""),
+                           paste(target, "_t", abs(tpuse[i]), sep=""))
+      }
     } else {
       colnames(block)<-c("time",
                          paste(lib, paste("_t", 1, sep=""), sep=""),
