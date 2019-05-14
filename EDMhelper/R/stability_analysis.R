@@ -24,7 +24,7 @@ stability_analysis <- function (smap_coef_out, doplot=TRUE){
     if(smap_coef_out$direction[i,"target"]!=smap_coef_out$direction[i,"lib"]) {
       variables <-  tmp[,grep(paste(smap_coef_out$direction[i,"target"], '_', sep=''), colnames(tmp)), drop=FALSE]
     } else {
-      variables <-  tmp[,grep("0", colnames(tmp)), drop=FALSE]
+      variables <-  tmp[,grep("t0", colnames(tmp)), drop=FALSE]
     }
 
     newmatrix <- cbind(variables,
