@@ -1,4 +1,4 @@
-﻿Package: EDMhelper
+Package: EDMhelper
 Title: A helper package for rEDM
 Version: 1.0
 Authors@R:
@@ -9,7 +9,7 @@ Depends: R (>= 3.4)
 Imports:
 	ggplot2,
 	plyr,
-	rEDM (>= 0.7.5),
+	rEDM (>= 0.7.4),
 	reshape,
 	Rmisc,
 	tidyr,
