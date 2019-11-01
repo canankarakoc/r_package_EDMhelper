@@ -1,11 +1,11 @@
 #' find_max_theta
 #'
-#' Finds the embedding dimension corresponding to the best predictive skill for a simplex call.
+#' Finds the best nonlinearity parameter theta corresponding to the best predictive skill for a simplex call.
 #' @param smap_out output of a call from "smap"
-#' @param buffer A number from 0 to 1, indicating the allowed buffer distance between the "best" E, and the E that is used. If mulple E values fall within the buffer, then the smallest E is used. Defaults to 0.99, i.e. any value within 99\% of the "best" E can be chosen.
+#' @param buffer A number from 0 to 1, indicating the allowed buffer distance between the "best" theta, and the theta that is used. If multiple values fall within the buffer, then the smallest theta is used. Defaults to 0.99, i.e. any value within 99\% of the "best" theta can be chosen.
 #' @param predtype A character indicating which metric to be used for determining predictive skill. Defaults to "rho". Can be "rho", "mae", or "rmse".
-#' @keywords rEDM, embedding dimension
-#' @return Value of E corresponding to the best predictive skill.
+#' @keywords rEDM, nonlinearity parameter
+#' @return Value of theta corresponding to the best predictive skill.
 #' @import stats
 #' @export
 
