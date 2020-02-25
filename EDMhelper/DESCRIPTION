@@ -1,5 +1,5 @@
 Package: EDMhelper
-Title: A helper package for rEDM
+Title: A collection of tools for EDM routines
 Version: 1.0
 Authors@R:
 	c(person("Canan", "Karakoç", email = "canankarakoc@gmail.com", role = c("aut", "cre")),
